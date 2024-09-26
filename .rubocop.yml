@@ -1,0 +1,11 @@
+require:
+  - standard
+  - rubocop-rake
+  - rubocop-rspec
+
+inherit_gem:
+  standard: config/base.yml
+
+AllCops:
+  NewCops: disable
+  DisplayStyleGuide: true
