@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module TurbineService
+module Turbine
   module Failures
     class BaseFailure < StandardError
       attr_reader :result

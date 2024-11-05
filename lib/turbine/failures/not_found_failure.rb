@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module TurbineService
+module Turbine
   module Failures
     class NotFoundFailure < BaseFailure
       attr_reader :resource

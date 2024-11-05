@@ -2,7 +2,7 @@
 
 require "json"
 
-module TurbineService
+module Turbine
   module Failures
     class ValidationFailure < BaseFailure
       attr_reader :messages

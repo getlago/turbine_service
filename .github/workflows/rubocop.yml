@@ -1,0 +1,32 @@
+name: Rubocop
+on: [pull_request]
+
+jobs:
+  linters:
+    name: Linters
+    runs-on: ubuntu-latest
+    if: ${{ github.actor != 'dependabot[bot]' }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+      - name: Setup Rubocop
+        # A bug requires the use of `bundle install` to use `rubocop-rails`. A fix is coming to Rubocop.
+        # See: https://github.com/rubocop/rubocop/issues/12823
+        run: |
+          bundle install
+      - name: Run Rubocop
+        # We must pass the list of files because for now, rubocop on the entire project throws too many errors.
+        # We exclude the db/schema.rb file explicitly because passing a list of files will override the `AllCops.Exclude` config in .rubocop.yml
+        run: |
+          FILES=$(git diff --diff-filter=d --name-only origin/${{ github.base_ref }}...HEAD -- '*.rb' ':!db/*schema.rb')
+          if [ -z "$FILES" ]; then
+            echo "No Ruby files to lint"
+            exit 0
+          else
+            echo "Linting Ruby files"
+            bundle exec rubocop $FILES
+          fi

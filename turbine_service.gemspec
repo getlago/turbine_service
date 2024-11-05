@@ -2,11 +2,11 @@
 
 $LOAD_PATH.push File.expand_path("lib", __dir__)
 
-require "turbine_service/version"
+require "turbine/version"
 
 Gem::Specification.new do |spec|
   spec.name = "turbine_service"
-  spec.version = TurbineService::VERSION
+  spec.version = Turbine::VERSION
   spec.platform = Gem::Platform::RUBY
   spec.required_ruby_version = ">= 3.0.0"
   spec.authors = ["Vincent Pochet"]

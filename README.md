@@ -23,7 +23,7 @@ bundle install
 ### Basic usage:
 
 ```ruby
-class MyService < TurbineService::Base
+class MyService < Turbine::Base
   def initialize(my_args)
     @my_args = my_args
 
@@ -40,13 +40,13 @@ end
 result = MyService.call(my_args)
 result.success? # => true
 result.failure? # => false
-result.raise_if_error! # => TurbineService::Result instance
+result.raise_if_error! # => Turbine::Result instance
 ```
 
 ### With failures
 
 ```ruby
-class MyService < TurbineService::Base
+class MyService < Turbine::Base
   def initialize(my_args)
     @my_args = my_args
 
@@ -72,14 +72,14 @@ result.failure? # => true
 
 result.error.code # => :my_error_code
 
-result.raise_if_error! # => raises TurbineService::ServiceFailure
+result.raise_if_error! # => raises Turbine::ServiceFailure
 ```
 
 ### With data attached to the result
 
 ```ruby
-class MyService < TurbineService::Base
-  class Result < TurbineService::Result
+class MyService < Turbine::Base
+  class Result < Turbine::Result
     attr_accessor :my_data
   end
 

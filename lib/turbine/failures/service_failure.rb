@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module TurbineService
+module Turbine
   module Failures
     class ServiceFailure < BaseFailure
       attr_reader :code, :error_message

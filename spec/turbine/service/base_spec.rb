@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-class DummyService < TurbineService::Base
+class DummyService < Turbine::Service::Base
   def initialize(message:)
     @message = message
 
@@ -17,11 +17,11 @@ class DummyService < TurbineService::Base
   end
 end
 
-class DummyService::Result < TurbineService::Result
+class DummyService::Result < Turbine::Service::Result
   attr_accessor :message
 end
 
-class DummyServiceWithoutResult < TurbineService::Base
+class DummyServiceWithoutResult < Turbine::Service::Base
   def initialize(message:)
     @message = message
 
@@ -35,7 +35,7 @@ class DummyServiceWithoutResult < TurbineService::Base
   end
 end
 
-RSpec.describe TurbineService::Base do
+RSpec.describe Turbine::Service::Base do
   describe "#call" do
     it { expect { described_class.call }.to raise_error(NotImplementedError) }
 
@@ -54,7 +54,7 @@ RSpec.describe TurbineService::Base do
     context "without result definition" do
       subject(:result) { DummyServiceWithoutResult.call(message: "foo") }
 
-      it { expect(result).to be_a(TurbineService::Result) }
+      it { expect(result).to be_a(Turbine::Service::Result) }
       it { expect(result).to be_success }
     end
   end

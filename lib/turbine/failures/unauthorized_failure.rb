@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-module TurbineService
+module Turbine
   module Failures
-    class ForbiddenFailure < BaseFailure
+    class UnauthorizedFailure < BaseFailure
       attr_reader :code
 
       def initialize(result, code)
